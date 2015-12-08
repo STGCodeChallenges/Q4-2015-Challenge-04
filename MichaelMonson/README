@@ -1,0 +1,10 @@
+
+I have written this program in Java.  I am also writing it in a very compressed amount of time, so it is going to be extremely basic.  
+
+To begin with, there is no user input.  All data is pre-entered in Arrays.  If you wish to change the score data, you must change it in the application.  Eventually I'll break it out into some sort of parser or user-entry interface.  For the purposes of this program, it will be sufficient.
+
+Second, there is no concept of multiple players being entered.  A single player is scored... no more.
+
+Third, I've also left all of the code in the default package, and simplified structure complexity.
+
+This program should meet the requirements of this coding challenge.
