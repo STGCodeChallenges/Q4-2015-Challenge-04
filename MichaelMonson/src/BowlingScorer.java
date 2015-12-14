@@ -111,7 +111,34 @@ public class BowlingScorer {
 		
 		// spit out results (ideally with roll values and scoring side by side, like an actual bowling score sheet)
 		System.out.println("\n");
-		System.out.println("\n                  P L A Y E R   S C O R E   S H E E T ");
+		System.out.println("\n                  P L A Y E R   S C O R E   S H E E T \n");
+		System.out.println("╔═══╤═╤═══╤═╤═══╤═╤═══╤═╤═══╤═╤═══╤═╤═══╤═╤═══╤═╤═══╤═╤═══╤═╤═╦═══════╗");
+		
+		System.out.print("║");
+		int frameCount = 0;
+		for (int i = 0; i < playerSheet.length - 4; i+=2) {
+			
+			String frame = frameType.get(frameCount);
+			switch (frame) {
+				case STRIKE:
+					System.out.print("   │X│");
+					i--; //Cheat the iteration for Strikes, since we have only one ball...
+					break;
+				case SPARE:
+					System.out.print(" " + playerSheet[i] + " │/│");
+					break;
+				case NORMAL:
+					System.out.print(" " + playerSheet[i] + " │" + playerSheet[i+1] + "│");
+					break;
+			}
+			frameCount++;
+		}
+		System.out.println("║ TOTAL ║");		
+		System.out.println("║   └─┤   └─┤   └─┤   └─┤   └─┤   └─┤   └─┤   └─┤   └─┤   └─┴─╢ SCORE ║");
+		System.out.println("║     │     │     │     │     │     │     │     │     │       ║ ───── ║");
+		System.out.println("║     │     │     │     │     │     │     │     │     │       ║       ║");
+		System.out.println("╚═════╧═════╧═════╧═════╧═════╧═════╧═════╧═════╧═════╧═══════╩═══════╝");
+		
 
 	}
 
