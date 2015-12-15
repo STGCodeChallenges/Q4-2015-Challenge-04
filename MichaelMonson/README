@@ -1,0 +1,11 @@
+
+I have written this program in Java.  I am also writing it in a very compressed amount of time, so it is going to be extremely basic.  
+  1. To begin with, there is no user input.  All data is pre-entered in Arrays.  If you wish to change the score data, you must change it in the application.  Eventually I'll break it out into some sort of parser or user-entry interface.  For the purposes of this program, it will be sufficient.
+  2. Second, there is no concept of multiple players being entered.  A single player is scored... no more.
+  3. Third, I've also left all of the code in the default package, and simplified structure complexity.
+
+This program should meet the requirements of this coding challenge.  To run, you will need to build the project.
+You can run it through an IDE, such as Eclipse or IntelliJ.  Or you can run it directly from the command prompt.
+
+NOTE:  I am using the old graphic characters from ASCII DOS, and they may not work on all non-Microsoft platforms.
+I would expect that neithe neither Linux nor Mac OS has any awareness of this character set.  Recommended to run within Windows.
