@@ -9,7 +9,11 @@ public class BowlingScorer {
 	private static final String NORMAL = "N";
 	private static final int PERFECT_GAME = 12;
 	private static final int MAXIMUM_ROLLS = 21;
-	private static Integer[] player1ScoreSheet = {4, 4, 10, 5, 4, 4, 6, 3, 7, 4, 6, 10, 8, 2, 1, 0, 10, 9, 10, 9, 1};
+	
+	//Score sheet is accurate and complete:
+	private static Integer[] player1ScoreSheet = {4, 4, 10, 5, 4, 4, 6, 3, 7, 4, 6, 10, 8, 2, 1, 0, 10, 9, 1};
+	
+	//Score sheet is incomplete, with only nine frames:
 	private static Integer[] player2ScoreSheet = {10,10,6,4,8,1,9,0,4,5,10,3,7,2,0};
 	
 	public static void main(String[] args) {
@@ -40,7 +44,6 @@ public class BowlingScorer {
 		
 			// Add total points for the frame:
 			if (frameRoll == 1 && playerSheet[i] == STRIKE_VALUE ) {
-//				playerTotal += playerSheet[i];   // Add up the totals below...
 				currentFrameTotal = playerSheet[i] + playerSheet[i+1] + playerSheet[i+2];
 				frameTotals.add(currentFrameTotal);
 				frameType.add(STRIKE);
@@ -63,7 +66,7 @@ public class BowlingScorer {
 					
 					//Calculate Frame Total (a spare or no spare):
 					if (currentFrameTotal == STRIKE_VALUE) {
-						currentFrameTotal = playerSheet[i] + playerSheet[i+1];
+						currentFrameTotal += playerSheet[i+1];
 						frameTotals.add(currentFrameTotal);	
 						System.out.println("Roll #" + i + " : Spare added.  Points = " + currentFrameTotal);
 					} else {
@@ -91,32 +94,14 @@ public class BowlingScorer {
 		
 		
 		// Process Player Score, taking into account multi-framed scoring:
-		
-		int playerTotal = 0;
-		
-		//Use the old style for/next so that I can use the iterator:
-//		int iLength = frameTotals.size(); 
-		for (int i = 0; i < frameTotals.get(i); i++) {
-//			if (frameType.get(i).equals(STRIKE) && frameTotals.size() > ) {
-//				playerTotal += (frameTotals.get(i) + frameTotals.get(i+1) + frameTotals.get(i+2)); //This doesn't work, because it is individual balls, not frames that are added...
-//			} else if (frameType.get(i).equals(SPARE)) {
-//				playerTotal += (frameTotals.get(i) + frameTotals.get(i+1));
-//			} else {
-				playerTotal += frameTotals.get(i);
-				
-//			}
-		}
-		
-		
-		
-		// spit out results (ideally with roll values and scoring side by side, like an actual bowling score sheet)
+		// Spit out results (ideally with roll values and scoring side by side, like an actual bowling score sheet)
 		System.out.println("\n");
 		System.out.println("\n                  P L A Y E R   S C O R E   S H E E T \n");
-		System.out.println("╔═══╤═╤═══╤═╤═══╤═╤═══╤═╤═══╤═╤═══╤═╤═══╤═╤═══╤═╤═══╤═╤═══╤═╤═╦═══════╗");
-		
+		System.out.println("╔═══╤═╤═══╤═╤═══╤═╤═══╤═╤═══╤═╤═══╤═╤═══╤═╤═══╤═╤═══╤═╤═══╤═╤═╦═══════╗");		
 		System.out.print("║");
+		
 		int frameCount = 0;
-		for (int i = 0; i < playerSheet.length - 4; i+=2) {
+		for (int i = 0; i < playerSheet.length - 2; i+=2) {
 			
 			String frame = frameType.get(frameCount);
 			switch (frame) {
@@ -133,10 +118,23 @@ public class BowlingScorer {
 			}
 			frameCount++;
 		}
-		System.out.println("║ TOTAL ║");		
+		System.out.println(" ║ TOTAL ║");		
 		System.out.println("║   └─┤   └─┤   └─┤   └─┤   └─┤   └─┤   └─┤   └─┤   └─┤   └─┴─╢ SCORE ║");
-		System.out.println("║     │     │     │     │     │     │     │     │     │       ║ ───── ║");
-		System.out.println("║     │     │     │     │     │     │     │     │     │       ║       ║");
+		
+		System.out.print("║ ");
+		Integer playerTotal = 0;
+		String spacer = "    ";
+		for (int frame = 0; frame < frameTotals.size(); frame++ ) {
+			playerTotal += frameTotals.get(frame);
+			String frameSpace = spacer.substring(0, 4 - playerTotal.toString().length());
+			System.out.print(playerTotal + frameSpace + "│ ");
+			//System.out.format("%3s", "");
+
+//			System.out.print();
+		}
+		System.out.print("║ ───── ║\n");
+		String padding = spacer.substring(0, 4 - playerTotal.toString().length());
+		System.out.println("║     │     │     │     │     │     │     │     │     │       ║  " + playerTotal + padding + " ║");
 		System.out.println("╚═════╧═════╧═════╧═════╧═════╧═════╧═════╧═════╧═════╧═══════╩═══════╝");
 		
 
