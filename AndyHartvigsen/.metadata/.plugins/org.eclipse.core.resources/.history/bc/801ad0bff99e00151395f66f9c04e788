@@ -1,0 +1,5 @@
+package com.stg.codechallenge;
+
+public class BowlingException {
+
+}

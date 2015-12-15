@@ -1,0 +1,22 @@
+package com.stg.codechallenge;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Frame {
+	private List<int> balls;
+	private int frameNum;
+
+	public Frame(int frameNum) {
+		this.frameNum = frameNum;
+		balls = new ArrayList<>();
+	}
+	
+	public int getFrameNum() {
+		return frameNum;
+	}
+	
+	public void addBall(int pins) {
+		
+	}
+}

@@ -1,0 +1,32 @@
+package com.stg.codechallenge;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class Game {
+	private List<Frame> frames;
+	private int currentFrame;
+	private int ball;
+	
+	public Game() {
+		frames = Arrays.asList(new Frame[10]);
+		for(int i = 0; i < 10; i++) {
+			frames.set(i, new Frame(i+1));
+		}
+		
+		currentFrame = 1;
+		ball = 1;
+	}
+	
+	public void playBall(pins) {
+		
+	}
+	
+	public int getTotalScore() {
+		int totalScore = 0;
+		`for(Frame frame : frames) {
+			totalScore += frame.getScore();
+		}
+		return totalScore;
+	}
+}

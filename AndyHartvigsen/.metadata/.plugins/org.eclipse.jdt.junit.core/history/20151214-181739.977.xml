@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="Rerun com.stg.codechallenge.test.TestFrame" project="BowlKeeper" tests="3" started="3" failures="0" errors="0" ignored="0">
+  <testsuite name="com.stg.codechallenge.test.TestFrame" time="0.031">
+    <testcase name="testSpare" classname="com.stg.codechallenge.test.TestFrame" time="0.031"/>
+    <testcase name="testPinCount" classname="com.stg.codechallenge.test.TestFrame" time="0.0"/>
+    <testcase name="testTenthFrame" classname="com.stg.codechallenge.test.TestFrame" time="0.0"/>
+  </testsuite>
+</testrun>

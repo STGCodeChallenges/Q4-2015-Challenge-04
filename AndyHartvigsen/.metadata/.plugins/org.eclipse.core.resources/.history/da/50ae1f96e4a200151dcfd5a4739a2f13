@@ -1,0 +1,57 @@
+package com.stg.codechallenge;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
+public class Game {
+	private List<Frame> frames;
+	private Frame currentFrame;
+	private Queue<Integer> bonusBalls;
+	private final int TWO = 2;
+	private boolean gameOver = false;
+	
+	public Game() {
+		frames = Arrays.asList(new Frame[10]);
+		for(int i = 0; i < 10; i++) {
+			frames.set(i, new Frame(i+1));
+		}
+		
+		currentFrame = frames.get(0);
+		 bonusBalls = new LinkedList();
+	}
+	
+	public void playBall(int pins) throws BowlingException {
+		if(gameOver) {
+			throws new BowlingException("Game Over! Add more scores.");
+		}
+		currentFrame.addBall(pins);
+		if(bonusBalls.size() > 0) {
+			frames.get(bonusBalls.poll() - 1).addBonus(pins);
+		}
+		if((currentFrame.ballsBowled() == TWO || currentFrame.isStrike()) && currentFrame.getFrameNum() != currentFrame.TEN) {
+			if(currentFrame.isSpare()) {
+				bonusBalls.add(currentFrame.getFrameNum());
+			} else if(currentFrame.isStrike()) {
+				bonusBalls.add(currentFrame.getFrameNum());
+				bonusBalls.add(currentFrame.getFrameNum());
+			}
+			currentFrame = frames.get(currentFrame.getFrameNum());
+		}
+		if(currentFrame.getFrameNum() == currentFrame.TEN) {
+			if(((currentFrame.isStrike() || currentFrame.isSpare() && currentFrame.ballsBowled() == 3) || currentFrame.ballsBowled() == 2) {
+				gameOver = true;
+			}
+		}
+	}
+	
+	public int getTotalScore() {
+		int totalScore = 0;
+		for(Frame frame : frames) {
+			totalScore += frame.getScore();
+		}
+		return totalScore;
+	}
+}

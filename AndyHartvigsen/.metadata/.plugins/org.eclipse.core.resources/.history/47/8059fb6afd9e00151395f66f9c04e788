@@ -1,0 +1,41 @@
+package com.stg.codechallenge;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Frame {
+	private List<Integer> balls;
+	private int frameNum;
+	private int score;
+	private final int TEN = 10;
+
+	public Frame(int frameNum) {
+		this.frameNum = frameNum;
+		balls = new ArrayList<>();
+	}
+	
+	public int getFrameNum() {
+		return frameNum;
+	}
+	
+	public void addBall(int pins) throws BowlingException {
+		if(pins > TEN) {
+			throw new BowlingException("You have tried to enter too many pins for this ball you dirty cheater.");
+		}
+		if(balls.size() == 2) {
+			if(frameNum == TEN && getScore() >= TEN) {
+				balls.add(pins);
+			} else {
+				throw new BowlingException("This either isn't the tenth frame or you didn't get a strike or spare.");
+			}
+		} else if(balls.size() > 1) {
+			throw new BowlingException("You have tried to enter too many balls for this frame you dirty cheater.");
+		} else {
+			balls.add(pins);
+		}
+	}
+	
+	public int getScore() {
+		return balls.stream().mapToInt(Integer::intValue).sum();
+	}
+}

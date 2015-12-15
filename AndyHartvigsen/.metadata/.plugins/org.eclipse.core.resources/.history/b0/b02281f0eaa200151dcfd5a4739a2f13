@@ -1,0 +1,71 @@
+package com.stg.codechallenge.test;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+import com.stg.codechallenge.BowlingException;
+import com.stg.codechallenge.Game;
+
+public class TestGame {
+
+	@Test
+	public void testTotalScore() {
+		Game game = new Game();
+		assertTrue(game.getTotalScore() == 0);
+	}
+
+	@Test
+	public void testBonus() {
+		Game game = new Game();
+		try {
+			game.playBall(10);
+			game.playBall(3);
+			game.playBall(7);
+			game.playBall(5);
+		} catch (BowlingException e) {
+			fail("This should give a score of 40");
+		}
+		assertTrue(game.getTotalScore() == 40);
+	}
+	
+	@Test
+	public void testPerfectGame() {
+		Game game = new Game();
+		try {
+			game.playBall(10);
+			game.playBall(10);
+			game.playBall(10);
+			game.playBall(10);
+			game.playBall(10);
+			game.playBall(10);
+			game.playBall(10);
+			game.playBall(10);
+			game.playBall(10);
+			game.playBall(10);
+			game.playBall(10);
+			game.playBall(10);
+		} catch (BowlingException e) {
+			fail("This should give a score of 300");
+		}
+		assertTrue(game.getTotalScore() == 300);
+	}
+	
+	@Test(expected=BowlingException.class)
+	public void testTooManyFrames() throws BowlingException {
+		Game game = new Game();
+		game.playBall(10);
+		game.playBall(10);
+		game.playBall(10);
+		game.playBall(10);
+		game.playBall(10);
+		game.playBall(10);
+		game.playBall(10);
+		game.playBall(10);
+		game.playBall(10);
+		game.playBall(10);
+		game.playBall(10);
+		game.playBall(10);
+		game.playBall(10);
+	}
+}

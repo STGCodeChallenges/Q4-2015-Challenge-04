@@ -1,0 +1,17 @@
+package com.stg.codechallenge.test;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+import com.stg.codechallenge.Game;
+
+public class TestGame {
+
+	@Test
+	public void testTotalScore() {
+		Game game = new Game();
+		assertTrue(game.getTotalScore() == 0);
+	}
+
+}
