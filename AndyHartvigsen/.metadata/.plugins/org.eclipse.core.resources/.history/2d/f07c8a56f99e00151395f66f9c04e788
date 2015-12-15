@@ -1,0 +1,30 @@
+package com.stg.codechallenge;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Frame {
+	private List<Integer> balls;
+	private int frameNum;
+	private int score;
+	private final int TEN = 10;
+
+	public Frame(int frameNum) {
+		this.frameNum = frameNum;
+		balls = new ArrayList<>();
+	}
+	
+	public int getFrameNum() {
+		return frameNum;
+	}
+	
+	public void addBall(int pins) {
+		if(balls.size() == 2) {
+			if()
+		}
+	}
+	
+	public int getScore() {
+		return balls.stream().mapToInt(Integer::intValue).sum();
+	}
+}

@@ -1,0 +1,33 @@
+package com.stg.codechallenge.test;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+import com.stg.codechallenge.BowlingException;
+import com.stg.codechallenge.Game;
+
+public class TestGame {
+
+	@Test
+	public void testTotalScore() {
+		Game game = new Game();
+		assertTrue(game.getTotalScore() == 0);
+	}
+
+	@Test
+	public void testBonus() {
+		Game game = new Game();
+		try {
+			game.playBall(10);
+			game.playBall(3);
+			game.playBall(7);
+			game.playBall(5);
+		} catch (BowlingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		assertTrue(game.getTotalScore() == 45);
+	}
+}

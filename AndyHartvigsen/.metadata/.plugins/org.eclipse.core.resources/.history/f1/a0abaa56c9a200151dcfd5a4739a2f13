@@ -1,0 +1,33 @@
+package com.stg.codechallenge;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class Game {
+	private List<Frame> frames;
+	private Frame currentFrame;
+	
+	public Game() {
+		frames = Arrays.asList(new Frame[10]);
+		for(int i = 0; i < 10; i++) {
+			frames.set(i, new Frame(i+1));
+		}
+		
+		currentFrame = frames.get(0);
+	}
+	
+	public void playBall(int pins) throws BowlingException {
+		currentFrame.addBall(pins);
+		if((currentFrame.isSpare() || currentFrame.isStrike()) && currentFrame.getFrameNum() != currentFrame.TEN) {
+			
+		}
+	}
+	
+	public int getTotalScore() {
+		int totalScore = 0;
+		for(Frame frame : frames) {
+			totalScore += frame.getScore();
+		}
+		return totalScore;
+	}
+}

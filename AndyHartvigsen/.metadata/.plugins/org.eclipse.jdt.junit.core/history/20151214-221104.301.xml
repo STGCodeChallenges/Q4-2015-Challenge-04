@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="com.stg.codechallenge.test" project="BowlKeeper" tests="8" started="8" failures="0" errors="0" ignored="0">
+  <testsuite name="com.stg.codechallenge.test.TestFrame" time="0.053">
+    <testcase name="testSpare" classname="com.stg.codechallenge.test.TestFrame" time="0.052"/>
+    <testcase name="testPinCount" classname="com.stg.codechallenge.test.TestFrame" time="0.0"/>
+    <testcase name="testTenthFrame" classname="com.stg.codechallenge.test.TestFrame" time="0.0"/>
+    <testcase name="testStrike" classname="com.stg.codechallenge.test.TestFrame" time="0.001"/>
+  </testsuite>
+  <testsuite name="com.stg.codechallenge.test.TestGame" time="0.011">
+    <testcase name="testTotalScore" classname="com.stg.codechallenge.test.TestGame" time="0.0"/>
+    <testcase name="testBonus" classname="com.stg.codechallenge.test.TestGame" time="0.002"/>
+    <testcase name="testTooManyFrames" classname="com.stg.codechallenge.test.TestGame" time="0.005"/>
+    <testcase name="testPerfectGame" classname="com.stg.codechallenge.test.TestGame" time="0.004"/>
+  </testsuite>
+</testrun>

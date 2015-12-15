@@ -1,0 +1,77 @@
+package com.stg.codechallenge;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Frame {
+	private List<Integer> balls;
+	private int frameNum;
+	public final int TEN = 10;
+	private boolean strike = false;
+	private boolean spare = false;
+	private int bonus;
+
+	public Frame(int frameNum) {
+		this.frameNum = frameNum;
+		balls = new ArrayList<>();
+		bonus = 0;
+	}
+	
+	public int getFrameNum() {
+		return frameNum;
+	}
+	
+	public void addBall(int pins) throws BowlingException {
+		if(pins > TEN) {
+			throw new BowlingException("You have tried to enter too many pins for this ball you dirty cheater.");
+		}
+		if(balls.size() == 2) {
+			if(frameNum == TEN && getScore() >= TEN) {
+				if(getScore() + pins > balls.size() * TEN + TEN) {
+					throw new BowlingException("Your score is too high for the number of balls bowled.");
+				} else {
+					balls.add(pins);
+				}
+			} else {
+				throw new BowlingException("This either isn't the tenth frame or you didn't get a strike or spare.");
+			}
+		} else if(balls.size() > 1) {
+			throw new BowlingException("You have tried to enter too many balls for this frame you dirty cheater.");
+		} else {
+			if((frameNum == TEN && getScore() + pins > balls.size() * TEN + TEN) || (frameNum != TEN && getScore() + pins > TEN)) {
+				throw new BowlingException("Your score is too high for the number of balls bowled.");
+			} else {
+				balls.add(pins);
+				if(getScore() == TEN) {
+					if(balls.size() == 1) {
+						strike = true;
+					} else if(balls.size() == 2) {
+						spare = true;
+					}
+				}
+			}
+		}
+	}
+	
+	public void addBonus(int bonus) throws BowlingException {
+		if(bonus > TEN) {
+			throw new BowlingException("If you knocked down more that 10 pins with one ball you are amazing or cheating.");
+		}
+	}
+	
+	public int ballsBowled() {
+		return balls.size();
+	}
+	
+	public int getScore() {
+		return balls.stream().mapToInt(Integer::intValue).sum() + bonus;
+	}
+	
+	public boolean isSpare() {
+		return spare;
+	}
+	
+	public boolean isStrike() {
+		return strike;
+	}
+}
